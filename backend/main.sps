@@ -1,8 +1,12 @@
+#insert("helpers.sps")
+
 open float handHeight
 {
   name = "Height [cm]"
   descr = "Height of your Hand in cm"
   value = 5 * 3.6
+  min = 10.0
+  max = 30.0
 }
 
 open float handWidth
@@ -10,32 +14,8 @@ open float handWidth
   name = "Width [cm]"
   descr = "Width of your Hand in cm"
   value = 9.95
-}
-
-open string axis
-{
-  name= "Axis"
-  descr = "You nosy bugger you"
-  value = ''
-}
-
-function drawAxis(string dir)
-{
-  vector axis = <[0,0,0]>
-  if (dir == 'x') {
-    axis = <[100,0,0]>
-  }
-  else if (dir == 'y') {
-    axis = <[0,100,0]>
-  }
-  else if (dir == 'z') {
-    axis = <[0,0,100]>
-  }
-  else {
-    echo ("Unknown direction " + dir)
-    return
-  }
-  make cylinder(axis, 1)
+  min = 7.5
+  max = 20.0
 }
 
 function handleGeometryFromHand(float width, float height)
@@ -66,7 +46,7 @@ function importGrip(float diameter, float length)
   float lenScaling = length / origLen
   float diaScaling = diameter / origDia
 
-  solid grip = importSTL("grip_low.stl")
+  solid grip = importSTL("include/grip_low.stl")
   grip <<= scaling(diaScaling, diaScaling, lenScaling)
   return grip
 }
@@ -74,13 +54,18 @@ function importGrip(float diameter, float length)
 function importNeck()
 {
   // Return the neck, with the attachment-point of the handle at (0,0,0)
-  return translation(<[0, -80, -30]>) >> importSTL("curved_neck_low.stl")
+  return importSTL("include/neck_high.stl")
 }
 
+function importBaseplate()
+{
+  return translation(<[0,-75.5,-25]>) >> importSTL("include/baseplate_low.stl")
+}
 
 float handleGeometry[] = handleGeometryFromHand(handWidth, handHeight)
 
 drawAxis(axis)
 
 make (importGrip(handleGeometry[1], handleGeometry[0]) +
-   importNeck())
+  importNeck() +
+  importBaseplate()) 
