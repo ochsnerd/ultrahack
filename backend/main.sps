@@ -12,6 +12,32 @@ open float handWidth
   value = 9.95
 }
 
+open string axis
+{
+  name= "Axis"
+  descr = "You nosy bugger you"
+  value = ''
+}
+
+function drawAxis(string dir)
+{
+  vector axis = <[0,0,0]>
+  if (dir == 'x') {
+    axis = <[100,0,0]>
+  }
+  else if (dir == 'y') {
+    axis = <[0,100,0]>
+  }
+  else if (dir == 'z') {
+    axis = <[0,0,100]>
+  }
+  else {
+    echo ("Unknown direction " + dir)
+    return
+  }
+  make cylinder(axis, 1)
+}
+
 function handleGeometryFromHand(float width, float height)
 {
   // Takes the width and height of a hand in cm
@@ -53,6 +79,8 @@ function importNeck()
 
 
 float handleGeometry[] = handleGeometryFromHand(handWidth, handHeight)
+
+drawAxis(axis)
 
 make (importGrip(handleGeometry[1], handleGeometry[0]) +
    importNeck())
