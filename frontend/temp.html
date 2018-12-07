@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello World</title>
+  <meta charset="UTF-utf-8">
+  <link rel="stylesheet" href="style.css">
+  <style>
+</style>
+
+<head>
+<title>david_testing</title>
+<link rel="stylesheet' type='text/css' href='https://libs.paramate.trinckle.com/paramateViewport-latest.css">
+<script src="https://libs.paramate.trinckle.com/paramateConfigurator-latest.js"></script>
+<script src="https://libs.paramate.trinckle.com/paramateControlsAuto-latest.js"></script>
+<script src="https://libs.paramate.trinckle.com/paramateViewportWebGL-latest.js"></script>
+</head>
+<body>
+  <div class="relative">
+<div id="viewPort" style="width: 200px; height: 200px;"></div>
+<div id="controls"></div>
+<div/>
+<script>
+var configurator
+var viewPort
+var controls
+
+window.onload = function(){
+
+  // Create configurator object
+  configurator = new Paramate.Configurator({
+    APIHub: 'https://api.paramate.trinckle.com',
+    configuratorId: '95fbbdf6-e542-4949-9f65-ef9ada5fcd18',
+    APIKey: '59abfe5fb40ab5d9c6907f175e3c5537'
+  });
+
+  // Create controls object
+  viewPort = new Paramate.ViewportWebGL({
+    configurator: configurator,
+    viewportElement: document.getElementById('viewPort')
+  });
+
+  // Create controls object
+  controls = new Paramate.ControlsAuto({
+    configurator: configurator,
+    containerElement: document.getElementById('controls')
+  });
+
+  // Register viewport and controls
+  configurator.viewPort = viewPort;
+  configurator.controls = controls;
+
+  // Start configurator
+  configurator.initialize();
+}
+</script>
+</body>
+</html>
+
+<head>
+<script>
+function showProgress()
+{
+//show a progress bar
+...
+}
+function setProgress (e)
+{
+//set the progress bar to the right value
+var percent = Math.floor(e.loaded / e.total * 100);
+}
+</script>
+</head>
+<body>
+<input type="file" class="paramateParam" data-paramate-paramName="main:myParam" data-paramate-progress="setProgress" onChange="showProgress ();">
+</body>
+
+
+<body>
+<input type="checkbox" class="paramateParam" data-paramate-paramName="main:myFirstBool" >
+<input type="text" class="paramateParam" data-paramate-paramName="main:myStringOrNumber">
+<select class="paramateParam" data-paramate-paramName="main:mySecondBool">
+  <option value="false">Off</option>
+  <option value="true">On</option>
+</select>
+...
+</body>
+
+<head>
+  <div class="textarea">
+  <h1><p class="sansserif">ALPA PLATON CAMERA HANDEL</h1>
+</div>
+</head>
+<head>
+  <div class="TEXT2">
+    <h2><p class="sansserif">ALPA PLATON</h2>
+    </div>
+  </head>
+</html>
