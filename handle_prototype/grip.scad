@@ -56,7 +56,7 @@ module grip(len, dia) {
     sc_len = len / g_length;
     sc_rad = dia / g_outer_dia;
     scale([sc_rad, sc_rad, sc_len]) {
-        import("include/grip_low.stl");
+        import("include/grip_low.stl", convexity=5);
     }
 }
 

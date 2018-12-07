@@ -13,7 +13,7 @@ grip_dia = 37;
 // 0 : nothing
 // 1 : 3/8 UNC insert
 // 2 : ball
-attachments = [2,1,1,0,2];
+attachments = [2,2,1,0,2];
 
 attachment_spots =
    [[ 35,  30, -76],
