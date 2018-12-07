@@ -19,16 +19,25 @@ div.textarea {
   p.sansserif {
     font-family: Arial, Helvetica, sans-serif;}
 
+
     div.TEXT2 {
-      <blend-mode: difference;>
       position: relative;
-      bottom: 100px;
+      bottom:100px;
       left: 900px;}
 
 body {
   background-image: url("IMG_1198.gif");
   background-repeat: no-repeat;
+  background-size: cover;
   position: relative;}
 
 
 p  {// background-color:none; }
+IMG_1198.gif {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;} 
