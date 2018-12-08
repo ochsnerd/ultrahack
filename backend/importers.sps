@@ -1,7 +1,7 @@
 function importSTL(string name)
 {
   // Import the stl from file name and return it as a solid
-  return mesh(name)
+  return (solid) mesh(name)
 }
 
 function importGrip(float diameter, float length)
