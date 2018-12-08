@@ -1,3 +1,10 @@
+function handleGeometryFromHand(float width, float height)
+{
+  // Takes the width and height of a hand in cm
+  // Returns a list of length 2 containing the length, diameter of the handle
+  return [10 * width, 10 * height / 5]
+}
+
 open string axis
 {
   name= "Axis"
@@ -23,3 +30,5 @@ function drawAxis(string dir)
   }
   make cylinder(axis, 1)
 }
+
+//function placeItems(int[] item_ids, )
