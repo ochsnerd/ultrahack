@@ -16,12 +16,12 @@ function placeItems(int itemIds[],
   //                         unionItems.length() > max(itemIds) has to hold.
   // Example:
   //    solid test = box(11, 11, 11)
-  //    int ids[] = [0,0,0]
+  //    int ids[] = [0,1,1]
   //    atrafo trafos[] = [translation(<[0,0,10]>) >> rotation(<[0,0,1]>, rad(45) ),
   //                       translation(<[1,1,0]>) >> rotation(<[0,0,1]>, rad(135) ),
   //                       translation(<[10,10,10]>) >> rotation(<[0,1,0]>, rad(45) )]
   //
-  //    solid items[] = [sphere(10), box(5,5,5)]
+  //    solid items[] = [(solid) sphere(10),(solid) box(5,5,5)]
   //
   //    placeItems(ids, trafos, test, items)
   if (!(itemIds.length() == itemTransformations.length()))

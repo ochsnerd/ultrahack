@@ -23,15 +23,22 @@ open color handleColor
 {
   name="Color"
   descr="Color of the handle"
-  value=rgb(0,0,0)
+  value=rgb(40,40,40)
 }
+
+solid attachments[] = [importSTL("include/attachments_empty.stl"),
+                       importSTL("include/attachments_quarter.stl"),
+                       importSTL("include/attachments_eights.stl"),
+                       importSTL("include/attachments_ulcs.stl"),
+                       importSTL("include/attachments_cableclips.stl")]
+
+atrafo attachment_transforms[] = [translation(<[0,20,-16.5]>) >> rotation(<[0,0,1]>, rad(0)),
+                                  translation(<[0,-1.5,30]>) >> rotation(<[0,0,1]>, rad(0)),
+                                  translation(<[20,-1.5,-16.5]>) >> rotation(<[0,0,1]>, rad(0)),
+                                  translation(<[-20,-1.5,-16.5]>) >> rotation(<[0,0,1]>, rad(0))]
 
 float handleGeometry[] = handleGeometryFromHand(handWidth, handHeight)
 
-drawAxis(axis)
-
-echo(importGrip(10,12).volume())
-
-make handleColor >> (importGripTransition(handleGeometry[1], handleGeometry[0], 36) +
+make handleColor >> (importGripTransition(handleGeometry[1], handleGeometry[0], 40) +
   importNeck() +
   importBaseplate())

@@ -30,5 +30,3 @@ function drawAxis(string dir)
   }
   make cylinder(axis, 1)
 }
-
-//function placeItems(int[] item_ids, )
