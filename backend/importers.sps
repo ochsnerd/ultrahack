@@ -35,5 +35,5 @@ function importNeck()
 
 function importBaseplate()
 {
-  return translation(<[0,-75.5,-25]>) >> rotation(<[0,0,1]>, rad(90)) >> rotation(<[1,0,0]>, rad(90)) >> importSTL("include/baseplate_high.stl")
+  return translation(<[0,-75.5,-25]>) >> rotation(<[0,0,1]>, rad(-90)) >> rotation(<[1,0,0]>, rad(90)) >> importSTL("include/baseplate_high.stl")
 }
