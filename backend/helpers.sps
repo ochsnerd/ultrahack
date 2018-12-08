@@ -2,7 +2,7 @@ function handleGeometryFromHand(float width, float height)
 {
   // Takes the width and height of a hand in cm
   // Returns a list of length 2 containing the length, diameter of the handle
-  return [10 * width, 10 * height / 5]
+  return [10 * width + 10, (7.5 * height - 15) / PI]
 }
 
 open string axis

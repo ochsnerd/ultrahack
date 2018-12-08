@@ -1,13 +1,15 @@
 #insert("helpers.sps")
 #insert("importers.sps")
+#insert("itemplacer.sps")
 
+// Hand dimensions --------------------------------------------------
 open float handHeight
 {
   name = "Height [cm]"
   descr = "Height of your Hand in cm"
-  value = 5 * 3.6
+  value = 19
   min = 12.5
-  max = 5 * 4.4
+  max = 23
 }
 
 open float handWidth
@@ -19,6 +21,9 @@ open float handWidth
   max = 20.0
 }
 
+float handleGeometry[] = handleGeometryFromHand(handWidth, handHeight)
+
+// Color --------------------------------------------------------------------
 open color handleColor
 {
   name="Color"
@@ -26,19 +31,77 @@ open color handleColor
   value=rgb(40,40,40)
 }
 
-solid attachments[] = [importSTL("include/attachments_empty.stl"),
-                       importSTL("include/attachments_quarter.stl"),
-                       importSTL("include/attachments_eights.stl"),
-                       importSTL("include/attachments_ulcs.stl"),
-                       importSTL("include/attachments_cableclips.stl")]
+// Attachments --------------------------------------------------------------
+open int attachment1
+{
+  name = "Atch-type 1"
+  descr = "Type of first attachment (top)"
+  value = 0
+  min = 0
+  max = 4
+}
 
-atrafo attachment_transforms[] = [translation(<[0,20,-16.5]>) >> rotation(<[0,0,1]>, rad(0)),
-                                  translation(<[0,-1.5,30]>) >> rotation(<[0,0,1]>, rad(0)),
-                                  translation(<[20,-1.5,-16.5]>) >> rotation(<[0,0,1]>, rad(0)),
-                                  translation(<[-20,-1.5,-16.5]>) >> rotation(<[0,0,1]>, rad(0))]
+open int attachment2
+{
+  name = "Atch-type 2"
+  descr = "Type of second attachment (front)"
+  value = 0
+  min = 0
+  max = 4
+}
 
-float handleGeometry[] = handleGeometryFromHand(handWidth, handHeight)
+open int attachment3
+{
+  name = "Atch-type 3"
+  descr = "Type of third attachment (left)"
+  value = 0
+  min = 0
+  max = 4
+}
 
-make handleColor >> (importGripTransition(handleGeometry[1], handleGeometry[0], 40) +
-  importNeck() +
-  importBaseplate())
+open int attachment4
+{
+  name = "Atch-type 4"
+  descr = "Type of fourth attachment (right)"
+  value = 0
+  min = 0
+  max = 4
+}
+
+solid attachments[] = [importSTL("include/attachment_empty.stl"),
+                       importSTL("include/attachment_quarter.stl"),
+                       importSTL("include/attachment_eights.stl"),
+                       importSTL("include/attachment_ulcs.stl"),
+                       importSTL("include/attachment_cableclips.stl")]
+
+atrafo attachment_transforms[] = [translation(<[  0.0,   20, 16.5]>) >> rotation(<[0,0,1]>, rad(  0)),
+                                  translation(<[  0.0, -1.5, 30.0]>) >> rotation(<[1,0,0]>, rad( 90)),
+                                  translation(<[ 20.0, -1.5, 16.5]>) >> rotation(<[0,0,1]>, rad(-90)),
+                                  translation(<[-20.0, -1.5, 16.5]>) >> rotation(<[0,0,1]>, rad( 90))]
+
+int ids[] = [attachment1,
+             attachment2,
+             attachment3,
+             attachment4]
+
+// Patterns ----------------------------------------------------------------
+
+
+// Import stls
+
+solid grip = importGripTransition(handleGeometry[1], handleGeometry[0], 40)
+solid neck = importNeck()
+solid base = importBaseplate()
+
+// Add attachments to neck
+placeItems(ids,
+           attachment_transforms,
+           neck,
+           attachments,
+           importSTL("include/attachment_empty.stl"))
+
+// Add pattern to grip
+
+
+// Combine, color and make
+make handleColor >> (grip + neck + base)
