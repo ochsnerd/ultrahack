@@ -1,7 +1,7 @@
 #insert("helpers.sps")
 #insert("importers.sps")
 #insert("itemplacer.sps")
-
+#insert("pattern.sps")
 // Hand dimensions --------------------------------------------------
 open float handHeight
 {
@@ -85,13 +85,20 @@ int ids[] = [attachment1,
              attachment4]
 
 // Patterns ----------------------------------------------------------------
-
+open float logoID
+{
+  name = "Pattern Type [1 to 8, 0 for none]"
+  descr = "Pattern Type"
+  value = 0
+  min = 0
+  max = 8
+}
 
 // Import stls
 
-solid grip = importGripTransition(handleGeometry[1], handleGeometry[0], 40)
-solid neck = importNeck()
-solid base = importBaseplate()
+solid grip = handleColor >> importGripTransition(handleGeometry[1], handleGeometry[0], 40)
+solid neck = handleColor >> importNeck()
+solid base = handleColor >> importBaseplate()
 
 // Add attachments to neck
 placeItems(ids,
@@ -101,7 +108,7 @@ placeItems(ids,
            importSTL("include/attachment_empty.stl"))
 
 // Add pattern to grip
-
+createPattern(grip, logoID, handWidth, handHeight)
 
 // Combine, color and make
-make handleColor >> (grip + neck + base)
+make (grip + neck + base)
