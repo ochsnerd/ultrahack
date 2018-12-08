@@ -16,7 +16,7 @@ function importGrip(float diameter, float length)
 
   solid grip = importSTL("include/grip_high.stl")
   grip <<= scaling(diaScaling, diaScaling, lenScaling)
-  grip -= translation(<[0, -20, -25]>) >> cylinder(<[0,100,0]>, 3)
+  //grip -= translation(<[0, -20, -25]>) >> cylinder(<[0,100,0]>, 3) // destroys the pattern
   return grip
 }
 
