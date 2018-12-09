@@ -149,3 +149,12 @@ bottom: -10px}
 
 div.BOB1 {position: relative;
 }
+
+div.jim {
+  position: relative;
+  width: 700%; /* Full width */
+  left: 1000px;}
+
+
+  div.fil {position: relative;
+  bottom: 550px}
