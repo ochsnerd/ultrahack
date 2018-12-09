@@ -260,9 +260,38 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <div class="modal-content">
     <span class="close03">&times;</span>
 
+    <div class="""slidecontainer">
+      <input type="range" min="12.5" max="23" value="19" class="slider" id="heightRange">
+      <p> Length of your hand in centimeters, current value: <span id="height"></span> cm.</p>
+      <img src="HandLength.png" style="width:200px;">
+    </div>
+    <script>
+        var slider1 = document.getElementById("heightRange");
+        var output1 = document.getElementById("height");
+        output1.innerHTML = slider1.value;
+        slider1.oninput = function() {
+            configurator.setParamValue('main:handHeight', this.value)
+            output1.innerHTML = this.value;
+        }
+    </script>
+
+    <div class="""slidecontainer">
+      <input type="range" min="7.5" max="20" value="9.95" class="slider" id="widthRange">
+      <p> Length of your hand in centimeters, current value: <span id="width"></span> cm.</p>
+      <img src="HandBreath.png" style="width:200px;">
+    </div>
+    <script>
+        var slider2 = document.getElementById("widthRange");
+        var output2 = document.getElementById("width");
+        output2.innerHTML = slider2.value;
+        slider2.oninput = function() {
+            configurator.setParamValue('main:handWidth', this.value)
+            output2.innerHTML = this.value;
+        }
+    </script>
 
 
-<p class="w3-right"><button class="w3-button w3-black" id="myButo"><b>CONTINUE CONFIGURTION</b> <span class="w3-tag w3-white"></span></button>
+<p class="w3-right"><button class="w3-button w3-black" id="myButo"><b>CONTINUE CONFIGURATION</b> <span class="w3-tag w3-white"></span></button>
 
 
 
